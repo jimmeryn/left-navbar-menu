@@ -34,3 +34,79 @@ code {
 .Container > * {
   flex: 1 100%;
 }
+
+.NavBar-center,
+.NavBar-left,
+.NavBar-right {
+  top: 5vh;
+  bottom: 0;
+}
+
+.NavBar-left {
+  left: 0;
+  flex-basis: 25%;
+  border-right: 3px #ccc solid;
+  background-color: white;
+  overflow-y: auto;
+}
+
+.NavBar-center {
+  right: 0;
+  flex-basis: 50%;
+  overflow-y: auto;
+}
+
+.NavBar-right {
+  right: 0;
+  z-index: -1;
+  flex-basis: 25%;
+  border-left: 1px #ccc solid;
+  padding: 2vh;
+  margin-right: 2vh;
+  overflow-y: auto;
+}
+
+#picture {
+  position: relative;
+  z-index: -1;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  top: calc(100vh / 8);
+}
+
+.show {
+  animation: show 1000ms forwards;
+}
+
+.hide {
+  animation: hide 1000ms forwards;
+}
+
+@keyframes show {
+  0% {
+    left: -1000px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes hide {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -1000px;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .NavBar-center,
+  .NavBar-left,
+  .NavBar-right {
+    display: inline-flex;
+    flex-wrap: nowrap;
+  }
+}
