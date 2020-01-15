@@ -5,9 +5,8 @@ const rootReducer = combineReducers({
   reducer
 });
 
-export type AppState = ReturnType<typeof rootReducer>;
+export type LeftMenuState = ReturnType<typeof rootReducer>;
 
 export default function configureStore() {
-  const store = createStore(rootReducer);
-  return store;
+  return createStore(rootReducer);
 }

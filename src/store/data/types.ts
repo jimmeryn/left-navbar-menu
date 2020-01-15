@@ -1,33 +1,34 @@
-export interface IDataElement extends Array<any> {
+export interface IDataElement {
   readonly label: string;
   value: string | boolean;
   readonly type: string;
   readonly group: string;
-  options?: String[];
+  options?: string[];
   readonly image?: string;
+}
+
+export interface INormalizedData {
+  // do not know number of properties!!
+  // [key: string]: {
+  //   byLabels: [];
+  //   allLabels: [];
+  // };
+  // groups: [];
 }
 
 export interface IData {
   properties: IDataElement[];
 }
 
-// Describing the diffrent ACTION NAMES available
-export const CHANGE_TEXT_VALUE = "CHANGE_TEXT_VALUE";
-export const CHANGE_BOOL_VALUE = "CHANGE_CHECKBOX_VALUE";
+// Describing different ACTION NAMES available
+export const UPDATE_PROPERTY_VALUE = "CHANGE_TEXT_VALUE";
 export const ADD_COMBOBOX_OPTION = "ADD_COMBOBOX_OPTION";
 
-interface ChangeTextValueAction {
-  type: typeof CHANGE_TEXT_VALUE;
+interface UpdatePropertyValueAction {
+  type: typeof UPDATE_PROPERTY_VALUE;
   payload: {
     index: number;
     newValue: string | boolean;
-  };
-}
-
-interface ChangeBoolValueAction {
-  type: typeof CHANGE_BOOL_VALUE;
-  payload: {
-    index: number;
   };
 }
 
@@ -39,7 +40,4 @@ interface AddComboboxOptionAction {
   };
 }
 
-export type ActionTypes =
-  | ChangeTextValueAction
-  | ChangeBoolValueAction
-  | AddComboboxOptionAction;
+export type ActionTypes = UpdatePropertyValueAction | AddComboboxOptionAction;

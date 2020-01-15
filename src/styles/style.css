@@ -29,6 +29,7 @@ code {
 .Container {
   height: 95vh;
   display: flex;
+  opacity: 0.99;
 }
 
 .Container > * {
@@ -40,73 +41,113 @@ code {
 .NavBar-right {
   top: 5vh;
   bottom: 0;
+  overflow-y: auto;
+}
+
+.NavBar-left,
+.NavBar-right {
+  flex-basis: 25%;
+}
+
+.NavBar-center,
+.NavBar-right {
+  right: 0;
 }
 
 .NavBar-left {
-  left: 0;
-  flex-basis: 25%;
-  border-right: 3px #ccc solid;
+  left: 1;
+  box-shadow: 6px 5px 5px rgba(0, 0, 0, 0.4);
   background-color: white;
-  overflow-y: auto;
+  text-align: center;
 }
 
 .NavBar-center {
-  right: 0;
+  z-index: -2;
   flex-basis: 50%;
-  overflow-y: auto;
+  background-color: whitesmoke;
 }
 
 .NavBar-right {
-  right: 0;
-  z-index: -1;
-  flex-basis: 25%;
-  border-left: 1px #ccc solid;
-  padding: 2vh;
-  margin-right: 2vh;
-  overflow-y: auto;
+  z-index: 1;
+  box-shadow: 0px 5px 10px 4px rgba(0, 0, 0, 0.5);
 }
 
-#picture {
-  position: relative;
+.pictureContainer {
   z-index: -1;
-  display: block;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 50%;
+}
+
+.picture {
+  position: relative;
+  display: inline-block;
   max-width: 100%;
-  max-height: 100%;
-  margin: auto;
-  top: calc(100vh / 8);
+  transition: 250ms transform ease-out;
+  left: -1000px;
+  transform: translateX(-1000px);
 }
 
 .show {
-  animation: show 1000ms forwards;
-}
-
-.hide {
-  animation: hide 1000ms forwards;
-}
-
-@keyframes show {
-  0% {
-    left: -1000px;
-  }
-  100% {
-    left: 0;
-  }
-}
-
-@keyframes hide {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: -1000px;
-  }
+  transform: translateX(1000px);
 }
 
 @media only screen and (max-width: 520px) {
+  body {
+    height: auto;
+  }
+
+  .App-header {
+    position: relative;
+    z-index: 1;
+  }
+
+  .Container {
+    flex-direction: column;
+    flex-basis: 100%;
+  }
+  .NavBar-left {
+    max-height: auto;
+  }
   .NavBar-center,
   .NavBar-left,
   .NavBar-right {
-    display: inline-flex;
-    flex-wrap: nowrap;
+    width: 100%;
+    display: column;
+    flex-direction: column;
+    height: auto;
+    display: block;
   }
+  .pictureContainer {
+    top: 53%;
+    max-width: 100vw;
+    max-height: 45vh;
+  }
+  .picture {
+    left: 0;
+    top: -1002px;
+    transition: 500ms;
+    transform: translateY(-1000px);
+    max-width: 100vw;
+    max-height: 45vh;
+  }
+  .show {
+    transform: translateY(1000px);
+  }
+}
+
+.button {
+  margin-top: 2.5vh;
+}
+
+.combobox {
+  width: 100%;
+}
+
+.comboboxOptionField {
+  max-height: 25vh;
+  overflow-y: auto;
 }
